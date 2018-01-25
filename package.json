@@ -1,0 +1,30 @@
+{
+  "name": "websocket_chatting",
+  "version": "1.0.0",
+  "description": "websocket_chatting",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sys970717/WebSocket_Chatting.git"
+  },
+  "keywords": [
+    "chat",
+    "websocket",
+    "realtime"
+  ],
+  "author": "sys970717",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sys970717/WebSocket_Chatting/issues"
+  },
+  "homepage": "https://github.com/sys970717/WebSocket_Chatting#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "socket.io": "^2.0.4",
+    "ws": "^4.0.0"
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="./Logger.js"></script>
+        <script type="text/javascript">
+            var logger = new Logger();
+            logger.getLogger("ws_client");
+            var resMsg = "";
+            var ws;
+
+            var connection = (ip, port) => {
+                ws = new WebSocket("ws://"+ip+":"+port);
+
+                ws.onopen = (event) => {
+                    send("Request Session Bind!!");
+                }
+
+                ws.onmessage = (event) => {
+                    resMsg = event.data;
+                    logger.info(resMsg.toString());
+                    insertHistory("list", "li", "server : "+resMsg.toString());
+                }
+                document.getElementById("data").addEventListener('keydown', enterKey, false);
+            }
+
+            var send = (reqMsg) => {
+                logger.info("client_Message : "+reqMsg.toString());
+                insertHistory("list", "li", "client : "+reqMsg.toString());
+                ws.send(reqMsg);
+            }
+
+            let enterKey = (e) => {
+                var bool = e.keyCode === 13;
+                if(bool) send(document.getElementById("data").value);
+                else return;
+            }
+
+            let insertHistory = (id, tag, msg) => {
+                let node = document.createElement(tag);
+                let textNode = document.createTextNode(msg);
+                node.appendChild(textNode);
+                document.getElementById(id).appendChild(node);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="chatContent">
+            <input id="data" type="text" value="" placeholder="plz input chatContent"/>
+            <button id="submitBtn" type="button" onclick="javascript:send(document.getElementById('data').value)">Submit</button>
+        </div>
+        <h3>History</h3>
+        <div id="historyChat">
+            <ul id="list">
+
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        alert("sadf");
+        document.body.onload = connection([IP], [PORT]);
+    </script>
+</html>
