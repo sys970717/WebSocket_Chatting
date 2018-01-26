@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src="../util/Logger.js"></script>
+        <script type="text/javascript" src="./connection.js"></script>
+        <script type="text/javascript" src="./send.js"></script>
+        <script type="text/javascript">
+            var logger = new Logger();
+            logger.getLogger("ws_client");
+            var resMsg = "";
+            var ws;
+        </script>
+    </head>
+    <body>
+        <div id="chatContent">
+            <input id="data" type="text" value="" placeholder="plz input chatContent"/>
+            <button id="submitBtn" type="button" onclick="javascript:send(document.getElementById('data').value)">Submit</button>
+        </div>
+        <h3>History</h3>
+        <div id="historyChat">
+            <ul id="list">
+
+            </ul>
+        </div>
+        <div id="clientData">
+          <input type="hidden" name="clientID" id="clientID" value="" />
+          <p>전송할 이미지를 끌어다 놓으세요.</p>
+          <input type="file" name="imgFile" value="" onchange="dropImage(event);"/>
+          <div id="clientImg" style="width:200px; height:200px; background-color:white; border: 1px solid;"></div>
+        </div>
+        <div id="inputIdDiv">
+          <p> Please input using ID</p>
+          <input type="text" name="useId" id="usingID" value="" onkeydown="javascript:enterId('usingID');" />
+          <p> Please input Recv ID ( Tokenizer : "|" )</p>
+          <input type="text" name="rcvId" id="rcvId" value="" onkeydown="javascript:enterId('rcvId');" />
+        </div>
+    </body>
+    <script type="text/javascript">
+        document.body.onload = alert("사용할 ID를 입력하시면 채팅이 시작됩니다.");
+    </script>
+</html>
